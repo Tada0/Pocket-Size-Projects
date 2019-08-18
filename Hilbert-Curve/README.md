@@ -1,17 +1,18 @@
-#Hilbert Curve Generator
+Hilbert Curve Generator
+=======================
 
-####Usage: 
+#### Usage: 
 ```
 python3 app.py [N] [SIZE] 
 ```
 
-####eg. Usage:
+#### eg. Usage:
 ```
 python3 app.py 6 512
 ```
 
 creates PHC(6) 512x512 image
 
-###Example:
+### Example:
 
 ![](curve.jpg)
