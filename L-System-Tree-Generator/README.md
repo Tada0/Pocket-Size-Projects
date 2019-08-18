@@ -21,8 +21,6 @@ F -> FF+[+F-F-F]-[-F+F+F]
 
 Angle = 25 ± 3° (Random)
 
-Output Image will be 
-
 ### Example:
 
 ![](tree.jpg)
