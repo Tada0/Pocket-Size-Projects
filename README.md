@@ -15,3 +15,5 @@ Pocket-Size-Projects
 #### [Basic Steganography](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Steganography-Example)
 
 #### [Sudoku Solver](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Sudoku-Solver)
+
+#### [Slow Loris](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Slow-Loris)

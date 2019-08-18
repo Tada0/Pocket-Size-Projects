@@ -2,7 +2,7 @@ import sys
 
 
 class Sudoku:
-    class Cell:
+    class __Cell:
         def __init__(self, grid_pos: (int, int), value: int):
             self.index = 0
             self.value = value
@@ -19,7 +19,7 @@ class Sudoku:
             self.index = 0
 
     def __init__(self, grid):
-        self.cells = [Sudoku.Cell((x, y), grid[x + 9 * y]) for y in range(9) for x in range(9)]
+        self.cells = [Sudoku.__Cell((x, y), grid[x + 9 * y]) for y in range(9) for x in range(9)]
         self.empty_cells = [cell for cell in self.cells if not cell.value]
         self.current_cell_index = 0
         self.calculate_neighbours()
