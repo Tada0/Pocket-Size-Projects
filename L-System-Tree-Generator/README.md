@@ -1,18 +1,19 @@
-#L-System Tree Generator
+L-System Tree Generator
+=======================
 
-####Usage: 
+#### Usage: 
 ```
 python3 app.py [N] [R] [SIZE] 
 ```
 
-####eg. Usage: 
+#### eg. Usage: 
 ```
 python3 app.py 5 8 1024
 ```
 
 creates 1024x1024px image of 5-th iteration L-System tree with branch length R
 
-###RULES
+### RULES
 
 Axiom = F
 
@@ -22,6 +23,6 @@ Angle = 25 ± 3° (Random)
 
 Output Image will be 
 
-###Example:
+### Example:
 
 ![](tree.jpg)
