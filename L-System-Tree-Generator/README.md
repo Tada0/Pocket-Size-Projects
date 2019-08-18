@@ -11,7 +11,7 @@ python3 app.py [N] [R] [SIZE]
 python3 app.py 5 8 1024
 ```
 
-creates 1024x1024px image of 5-th iteration L-System tree with branch length R
+creates 1024x1024px image of 5-th iteration L-System tree with branch length 8
 
 ### RULES
 
