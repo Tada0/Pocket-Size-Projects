@@ -1,11 +1,12 @@
-#Steganography Example
+Steganography Example
+=====================
 
-####Usage: 
+#### Usage: 
 ```
 python3 usage: app.py [-h] (-e Image_Path, Message_File_Path, Key | -d Image_Path, Key)
 ```
 
-####eg. Usage: 
+#### eg. Usage: 
 ```
 python3 app.py -e cat.jpg msg.txt 34n5689bv498
 ```
