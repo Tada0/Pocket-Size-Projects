@@ -8,6 +8,8 @@ Pocket-Size-Projects
 
 ##### tbh, idc
 
+#### [Secure Shell Continuous Deployment](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Secure-Shell-Continuous-Deployment)
+
 #### [Hilbert Curve](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Hilbert-Curve)
 
 #### [L-System Tree Generator](https://github.com/Tada0/Pocket-Size-Projects/tree/master/L-System-Tree-Generator)

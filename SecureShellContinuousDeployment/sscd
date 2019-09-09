@@ -1,0 +1,71 @@
+from termcolor import colored
+from time import gmtime, strftime
+import hashlib
+import shutil
+import time
+import json
+import glob
+import sys
+import os
+
+
+def get_date(f):
+    file_path = '\\'.join(f.split('\\')[:-1])
+    file_name = f.replace(file_path, '')[1:]
+    return os.popen(f'forfiles /p {file_path} /m {file_name} /c \"cmd /c ECHO @ftime\"').read()[1:-1]
+
+
+def read_dates(filename):
+    with open(f'projects_metadata/{filename}.mda', 'r') as f:
+        return [l[:-2] for l in f]
+
+
+def renew_dates(filename, news):
+    dates = read_dates(filename)
+    dates_map = {date.split('@')[0]: date.split('@')[1] for date in dates}
+
+    for new_date in news:
+        dates_map[new_date.split('@')[0]] = new_date.split('@')[1]
+
+    os.remove(f'projects_metadata/{filename}.mda')
+    with open(f'projects_metadata/{filename}.mda', 'w') as f:
+        for d in dates_map.items():
+            f.write(f"{d[0]}@{d[1]} \n")
+
+
+def deliver_files(files, local_dir, remote_dir):
+    for new_file in files:
+        file_path = new_file.split('@')[0].split(local_dir.split('\\')[-2])[-1].replace('\\', '/')
+        directory = '/'.join(file_path.split('/')[1:-1])
+        os.system(f"ssh -i {sys.argv[2]} {sys.argv[1]} `mkdir -p {remote_dir}/{directory}` ")
+        os.system(f'scp -i {sys.argv[2]} {new_file.split("@")[0]} {sys.argv[1]}:{remote_dir}/{file_path}')
+        print(colored(f'[{strftime("%Y-%m-%d %H:%M:%S")}] {new_file.split("@")[0]} Delivered Succesfully!\n', 'green'))
+
+
+if __name__ == '__main__':
+    print('Getting Started...')
+    if os.path.isdir('./projects_metadata'):
+        shutil.rmtree('./projects_metadata')
+    os.mkdir('projects_metadata')
+
+    with open('config.json') as json_file:
+        config_data = json.load(json_file)
+
+    for key in config_data.keys():
+        open(f'projects_metadata/{hashlib.md5(key.encode()).hexdigest()}.mda', 'w+').close()
+        for file in [f for f in glob.glob(config_data[key]['local_dir'] + '**/*.*', recursive=True)]:
+            os.system(f'ECHO {file}@{get_date(file)} >> projects_metadata/{hashlib.md5(key.encode()).hexdigest()}.mda')
+
+    while True:
+        for key in config_data.keys():
+            allfiles = [f for f in glob.glob(config_data[key]['local_dir'] + '**/*.*', recursive=True)]
+            new_dates = [f"{file}@{get_date(file)}" for file in allfiles]
+            old_dates = read_dates(f"{hashlib.md5(key.encode()).hexdigest()}")
+            diff = set(new_dates) - set(old_dates)
+            if diff:
+                print(f'[{strftime("%Y-%m-%d %H:%M:%S")}] Found changes in those files: ')
+                [print(colored(str(diff).split('@')[0][2:].replace('\\\\', '\\'), 'red')) for f in diff]
+                renew_dates(f"{hashlib.md5(key.encode()).hexdigest()}", diff)
+                print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering New Files', 'white', attrs=['blink']))
+                deliver_files(diff, config_data[key]['local_dir'], config_data[key]['remote_dir'])
+        time.sleep(1)
