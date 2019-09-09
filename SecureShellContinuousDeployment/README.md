@@ -30,7 +30,3 @@ Uses config.json (same directory as sscd) to declare supported projects
 With that config script will recursively deploy evey changed file from local_dir to remote_dir on file save.
 
 Note that remote_dir must exist on the remote machine 
-
-#TODO
-
-In future, script will support deployment of all files on script start. 

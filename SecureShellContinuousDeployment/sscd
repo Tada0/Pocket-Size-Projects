@@ -56,6 +56,19 @@ if __name__ == '__main__':
         for file in [f for f in glob.glob(config_data[key]['local_dir'] + '**/*.*', recursive=True)]:
             os.system(f'ECHO {file}@{get_date(file)} >> projects_metadata/{hashlib.md5(key.encode()).hexdigest()}.mda')
 
+    try:
+        deploy_on_demand = sys.argv[3]
+        if deploy_on_demand != 'DeployOnDemand':
+            raise ValueError
+        print(colored('Deployment on demand selected', 'green'))
+        for key in config_data.keys():
+            demanded_files = read_dates(f"{hashlib.md5(key.encode()).hexdigest()}")
+            print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering all files on Demand', 'green'))
+            deliver_files(demanded_files, config_data[key]['local_dir'], config_data[key]['remote_dir'])
+            print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] All files Delivered Successfully', 'green'))
+    except (IndexError, ValueError):
+        print(colored('Deployment on demand not selected', 'red'))
+
     while True:
         for key in config_data.keys():
             allfiles = [f for f in glob.glob(config_data[key]['local_dir'] + '**/*.*', recursive=True)]
@@ -66,6 +79,6 @@ if __name__ == '__main__':
                 print(f'[{strftime("%Y-%m-%d %H:%M:%S")}] Found changes in those files: ')
                 [print(colored(str(diff).split('@')[0][2:].replace('\\\\', '\\'), 'red')) for f in diff]
                 renew_dates(f"{hashlib.md5(key.encode()).hexdigest()}", diff)
-                print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering New Files', 'white', attrs=['blink']))
+                print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering New Files', 'white'))
                 deliver_files(diff, config_data[key]['local_dir'], config_data[key]['remote_dir'])
         time.sleep(1)
