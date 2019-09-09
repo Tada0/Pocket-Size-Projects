@@ -77,9 +77,9 @@ if __name__ == '__main__':
             old_dates = read_dates(f"{hashlib.md5(key.encode()).hexdigest()}")
             diff = set(new_dates) - set(old_dates)
             if diff:
-                print(f'[{strftime("%Y-%m-%d %H:%M:%S")}] Found changes in those files: ')
+                print(f'\n\n[{strftime("%Y-%m-%d %H:%M:%S")}] Found changes in those files: ')
                 [print(colored(str(diff).split('@')[0][2:].replace('\\\\', '\\'), 'red')) for f in diff]
                 renew_dates(f"{hashlib.md5(key.encode()).hexdigest()}", diff)
                 print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering New Files', 'white'))
                 deliver_files(diff, config_data[key]['local_dir'], config_data[key]['remote_dir'])
-        time.sleep(1)
+        time.sleep(0.5)
