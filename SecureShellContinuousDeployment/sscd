@@ -66,6 +66,7 @@ if __name__ == '__main__':
             print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Delivering all files on Demand', 'green'))
             deliver_files(demanded_files, config_data[key]['local_dir'], config_data[key]['remote_dir'])
             print(colored(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] All files Delivered Successfully', 'green'))
+            print(f'\n[{strftime("%Y-%m-%d %H:%M:%S")}] Waiting for file changes...')
     except (IndexError, ValueError):
         print(colored('Deployment on demand not selected', 'red'))
 

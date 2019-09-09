@@ -8,8 +8,10 @@ Does not support passphrase (Leave Empty)
 
 #### Usage: 
 ```
-python sscd [user@host] [path/to/auth_key] 
+python sscd [user@host] [path/to/auth_key] (DeployOnDemand)
 ```
+
+If you specify the third argument as `DeployOnDemand` script will Deploy all files on start
 
 #### eg. Usage: 
 ```
