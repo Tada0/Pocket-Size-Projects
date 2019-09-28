@@ -8,7 +8,7 @@ Pocket-Size-Projects
 
 ##### tbh, idc
 
-#### [Secure Shell Continuous Deployment](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Secure-Shell-Continuous-Deployment)
+#### [Secure Shell Continuous Deployment](https://github.com/Tada0/Pocket-Size-Projects/tree/master/SecureShellContinuousDeployment)
 
 #### [Hilbert Curve](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Hilbert-Curve)
 
