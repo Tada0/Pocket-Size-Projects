@@ -18,8 +18,3 @@ Each socket sends 1 byte every 15s
 Works on Apache, Flask etc.
 
 Wiki - [Slow Loris](https://en.wikipedia.org/wiki/Slowloris_\(computer_security\))
-
-# Important!
-Use at your own risk.
-
-Don't be a dick, don't attack someone's server!
