@@ -1,13 +1,6 @@
 Pocket-Size-Projects
 ====================
 
-### Disclaimer:
-##### These programs were not meant to be foolproof. They were made because of my boredom, use them
-
-##### like a normal human being and they will work. They need some dependencies (because of my laziness)
-
-##### tbh, idc
-
 #### [Secure Shell Continuous Deployment](https://github.com/Tada0/Pocket-Size-Projects/tree/master/SecureShellContinuousDeployment)
 
 #### [Hilbert Curve](https://github.com/Tada0/Pocket-Size-Projects/tree/master/Hilbert-Curve)
